@@ -1,0 +1,103 @@
+body {
+    overflow: hidden;
+}
+.App {
+    padding-top: 70px; /* Prevents content from getting hidden */
+    padding-left:250px;
+    height: 800px;
+    background-image: url("./assets/overlay.png");
+    background-color: #2b2a32;
+    overflow: hidden;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(0, 25, 255, 0.2); /* Adds transparency */
+    z-index: 2; /* Ensures navbar stays on top */
+    padding: 10px 0;
+}
+
+.Delvy {
+    width: 30%;
+    text-align: center;
+}
+
+.Delvy img {
+    height: 25px;
+}
+
+.links {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font: bold 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.sign {
+    text-align: center;
+    width: 35%;
+}
+
+.sign a {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.boxes {
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+}
+
+.first {
+    padding: 50px;
+    position: relative;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+h1, p {
+    padding: 10px;
+    color: white;
+}
+
+.second {
+    margin-top: 200px;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.second img {
+    height: 600px;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+}
+
+li img {
+    height: 50px;
+    width: 150px;
+}
