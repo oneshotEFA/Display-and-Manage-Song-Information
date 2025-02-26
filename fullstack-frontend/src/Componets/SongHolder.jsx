@@ -1,10 +1,11 @@
 import "./SongHolderStyles.css";
 import { useEffect, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 function SongHolder({ albumTitle }) {
     var Url = `http://localhost:8080/music/`;
     const [songHolder, setSongHolder] = useState([]);
-
+    var nosong = null;
     async function FetchSong() {
         try {
             if (albumTitle) {
@@ -15,7 +16,8 @@ function SongHolder({ albumTitle }) {
 
             const response = await fetch(Url);
             if (!response.ok) {
-                throw new Error("Error fetching Song");
+                setSongHolder(nosong);
+                
             }
             let song = await response.json();
             setSongHolder(song);
@@ -30,11 +32,14 @@ function SongHolder({ albumTitle }) {
 
     return (
         <>
+            <div className="header">
+                <h1>{albumTitle? albumTitle:"All Musics"}</h1>
+            </div>
             <div className="Container">
-                <div className="header">
-                    <h1>{albumTitle? albumTitle:"All Musics"}</h1>
-                </div>
-                {songHolder.map((song, index) => (
+                {!songHolder? (
+                    <h1 >No Song Found</h1>
+                ):
+                songHolder.map((song, index) => (
                     <div className="row" key={index}>
                         <div className="info">
                             <p>{song.musicTitle}</p>

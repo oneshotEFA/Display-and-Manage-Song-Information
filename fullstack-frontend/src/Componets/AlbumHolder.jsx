@@ -9,7 +9,7 @@ function AlbumHolder () {
     async function fetchAlbum(){
         var response = await fetch(baseURL+"album");
         if(!response.ok){
-            throw new Error("Error fetching Album");
+           setAlbumHolder(null);
         }
         response = await response.json();
         setAlbumHolder(response);
@@ -25,9 +25,17 @@ function AlbumHolder () {
     }, [id]);
     return(
         <>
+            <div className="header">
+                {id? "":(
+                    <h1>All Albums</h1>
+                )}
+            </div>
             <div className="container">
 
-                {albumHolder.map((album,index)=>(
+                {!albumHolder?(
+                    <h1>No album Found</h1>
+                )  :
+                albumHolder.map((album,index)=>(
                     <div
                         className={"component"}
                         key={index}

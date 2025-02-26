@@ -1,11 +1,10 @@
 .Container {
-
-    border: 1px solid grey;
+    border: solid 1px rgb(0, 255, 255, 0.2);
     border-radius: 10px;
     margin-left: 40px;
     margin-right: 40px;
     position: fixed;
-    top: 100px;
+    top: 150px;
     left: 250px;
     right: 0;
     bottom: 30px;
@@ -15,7 +14,8 @@
     padding: 1rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
-
+    box-shadow:rgb(0, 255, 255, 0.2) 5px 5px,
+    rgb(0, 255, 255, 0.1) 10px 10px;
 }
 
 .Container::-webkit-scrollbar {
@@ -46,7 +46,7 @@
 }
 .info p {
     margin: 0;
-    padding: 0px;
+    padding: 0;
 }
 
 .duration{

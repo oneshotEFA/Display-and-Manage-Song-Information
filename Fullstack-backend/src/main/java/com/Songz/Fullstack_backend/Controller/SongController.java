@@ -1,12 +1,10 @@
 package com.Songz.Fullstack_backend.Controller;
 
-import com.Songz.Fullstack_backend.Services.ReturnAllArtist;
-import com.Songz.Fullstack_backend.Services.ReturnAllAlbums;
-import com.Songz.Fullstack_backend.Services.ReturnAllSongs;
-import com.Songz.Fullstack_backend.Services.ReturnByAlbum;
+import com.Songz.Fullstack_backend.Services.*;
 import com.Songz.Fullstack_backend.Tables.Album;
 import com.Songz.Fullstack_backend.Tables.Artist;
 import com.Songz.Fullstack_backend.Tables.Music;
+import com.Songz.Fullstack_backend.Tables.MusicInfo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +21,13 @@ public class SongController {
     private final ReturnAllArtist returnAllArtist;
     private final ReturnAllSongs returnAllSongs;
     private final ReturnByAlbum  returnByAlbum;
-    public SongController(ReturnAllAlbums returnAllAlbums, ReturnAllArtist returnAllArtist, ReturnAllSongs returnAllSongs, ReturnByAlbum returnByAlbum) {
+    private final AddMusic addMusic;
+    public SongController(ReturnAllAlbums returnAllAlbums, ReturnAllArtist returnAllArtist, ReturnAllSongs returnAllSongs, ReturnByAlbum returnByAlbum, AddMusic addMusic) {
         this.returnAllAlbums = returnAllAlbums;
         this.returnAllArtist = returnAllArtist;
         this.returnAllSongs = returnAllSongs;
         this.returnByAlbum = returnByAlbum;
+        this.addMusic = addMusic;
     }
 
     @GetMapping("/album")
@@ -46,4 +46,9 @@ public class SongController {
     public ResponseEntity<List<Music>> getByAlbumName(@RequestParam String albumName) {
         return returnByAlbum.exe(albumName);
     }
+    @PostMapping("/add")
+    public ResponseEntity<String> addMusic(@RequestBody MusicInfo music) {
+        return addMusic.exe(music);
+    }
+
 }
