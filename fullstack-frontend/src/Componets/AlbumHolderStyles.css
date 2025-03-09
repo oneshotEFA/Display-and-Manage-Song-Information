@@ -55,3 +55,14 @@
     text-align: center;
     color: white;
 }
+
+@media (max-width: 768px){
+    .container{
+        left: 0;
+        
+    }
+    .component{
+        width: 100px;
+        height: 150px;
+    }
+}

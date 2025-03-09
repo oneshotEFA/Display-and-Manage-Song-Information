@@ -1,58 +1,65 @@
 import imge from "../assets/checking.jpg";
 import "./AlbumHolderStyles.css";
-import {useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import SongHolder from "./SongHolder.jsx";
-function AlbumHolder () {
+
+function AlbumHolder() {
     const baseURL = "http://localhost:8080/music/";
     const [albumHolder, setAlbumHolder] = useState([]);
     const [id, setId] = useState(null);
-    async function fetchAlbum(){
-        var response = await fetch(baseURL+"album");
-        if(!response.ok){
-           setAlbumHolder(null);
+    const location = useLocation(); 
+
+    async function fetchAlbum() {
+        var response = await fetch(baseURL + "album");
+        if (!response.ok) {
+            setAlbumHolder(null);
         }
         response = await response.json();
         setAlbumHolder(response);
     }
+
     useEffect(() => {
         fetchAlbum();
-    },[])
+    }, []);
 
+    // Reset `id` when navigating to /AlbumHolder
     useEffect(() => {
-        if (id) {
-            setAlbumHolder([]);
+        if (location.pathname === "/AlbumHolder") {
+            setId(null);
         }
-    }, [id]);
-    return(
+    }, [location.pathname]);
+
+    return (
         <>
             <div className="header">
-                {id? "":(
-                    <h1>All Albums</h1>
-                )}
-            </div>
-            <div className="container">
-
-                {!albumHolder?(
-                    <h1>No album Found</h1>
-                )  :
-                albumHolder.map((album,index)=>(
-                    <div
-                        className={"component"}
-                        key={index}
-                        onClick={ () =>
-                            setId(album.albumTitle)
-
-                        }>
-                        <img src={imge} alt={"image"}/>
-                        <h4>{album.albumTitle}</h4>
-                        <p>{album.artistName}</p>
-                    </div>
-                ))}
+                {!id && <h1>All Albums</h1>}
             </div>
 
-            {id && <SongHolder albumTitle={id} />  }
-            {}
+            {/* Use state-based conditional rendering */}
+            {!id && (
+                <div className="container">
+                    {albumHolder.length===0 ? (
+                        <h1>No album Found</h1>
+                    ) : (
+                        albumHolder.map((album, index) => (
+                            <div
+                                className="component"
+                                key={index}
+                                onClick={() => setId(album.albumTitle)}
+                            >
+                                <img src={imge} alt="Album" />
+                                <h4>{album.albumTitle}</h4>
+                                <p>{album.artistName}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
+            )}
+
+            {id && <SongHolder albumTitle={id} />}
         </>
-    )
+    );
 }
-export default AlbumHolder
+
+export default AlbumHolder;

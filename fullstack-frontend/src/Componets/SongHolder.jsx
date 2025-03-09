@@ -36,12 +36,12 @@ function SongHolder({ albumTitle }) {
                 <h1>{albumTitle? albumTitle:"All Musics"}</h1>
             </div>
             <div className="Container">
-                {!songHolder? (
+                {songHolder.length===0?(
                     <h1 >No Song Found</h1>
                 ):
                 songHolder.map((song, index) => (
                     <div className="row" key={index}>
-                        <div className="info">
+                        <div className="infos">
                             <p>{song.musicTitle}</p>
                             <p>{song.artistName}</p>
                             <p>{song.albumName}</p>

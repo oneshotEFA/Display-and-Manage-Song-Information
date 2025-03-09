@@ -1,24 +1,24 @@
 package com.Songz.Fullstack_backend.Services;
 
-import com.Songz.Fullstack_backend.Repositories.ArtistRepo;
-import com.Songz.Fullstack_backend.Tables.Artist;
-import org.springframework.http.HttpStatus;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.Songz.Fullstack_backend.Repositories.ArtistTableRepo;
+import com.Songz.Fullstack_backend.Tables.ArtistTable;
 
 @Service
-public class ReturnAllArtist implements  Common<Void,List<Artist>> {
-    private final ArtistRepo artistRepo;
+public class ReturnAllArtist implements  Common<Void,List<ArtistTable>> {
+    private final ArtistTableRepo artistRepo;
 
-    public ReturnAllArtist(ArtistRepo artistRepo) {
+    public ReturnAllArtist(ArtistTableRepo artistRepo) {
         this.artistRepo = artistRepo;
     }
 
     @Override
-    public ResponseEntity<List<Artist>> exe(Void input) {
-        List<Artist> artists = artistRepo.findAll();
+    public ResponseEntity<List<ArtistTable>> exe(Void input) {
+        List<ArtistTable> artists = artistRepo.findAll();
         if (!artists.isEmpty()) {
             return ResponseEntity.ok().body(artists);
         }

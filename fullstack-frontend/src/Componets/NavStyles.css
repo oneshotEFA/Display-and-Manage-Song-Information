@@ -11,21 +11,67 @@ nav {
     z-index: 2; /* Ensures navbar stays on top */
     padding: 10px 0;
     overflow-x: hidden;
+    transition: 0.5s ease-in-out;
 }
 .Delvy {
     width: 30%;
     text-align: center;
 }
-
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    left: 5px;
+    top: 15px;
+    z-index: 100;
+    color: white;
+  }
 .Delvy img {
     height: 25px;
 }
+.side-bar-mobile{
+    display: block;
+    position: fixed;
+    width: 0px;
+    height: 100%;
+    background-color: black;
+    z-index: 100;
+    overflow-x: hidden;
+    transition: width 0.5s ease-in-out;
+}
 
+.side-boxes-mobile{
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-left:15px;
+    margin-bottom:10px;
+    margin-top: 25px;
+    background-color:rgb(0, 255, 255, 0.3) ;
+    border-radius: 10px;
+}
+.side-boxes-mobile h2{
+    font-size: 18px;
+    margin: 5px;
+}
+.side-boxes-mobile p{
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+.side-boxes-mobile:hover{
+    background-color: rgb(0, 255, 255, 0.4);
+    transform: scale(1.07);
+}
 .links {
     width: 70%;
     display: flex;
-    align-items: center; /* Center items vertically */
-    gap: 10px; /* Adds space between items */
+    align-items: center;
+    gap: 10px; 
 }
 
 .links input {
@@ -51,11 +97,40 @@ nav {
     background-color:rgb(0, 255, 255, 0.9) ;
 }
 
-a {
+.link-nav a {
     text-decoration: none;
     color: white;
     font: bold 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     transition: 0.4s ease-out;
-}a:hover {
+    margin-left: 10px;
+}
+.link-nav a:hover {
      color: cyan;
+ }
+
+
+
+
+
+ @media (max-width: 768px) {
+    .hamburger{ 
+        display: block;
+    }
+    .Delvy img {
+        position: relative;
+        height: 25px;
+        left: 42px;
+    }
+    .link-nav{
+        display: none;
+    }
+    .links input{
+        position: relative;
+        left: 50px;
+        width: 130px;
+    }
+    .links button{
+        position: relative;
+        left: 50px;
+    }
  }

@@ -1,15 +1,26 @@
 package com.Songz.Fullstack_backend.Controller;
 
-import com.Songz.Fullstack_backend.Services.*;
-import com.Songz.Fullstack_backend.Tables.Album;
-import com.Songz.Fullstack_backend.Tables.Artist;
-import com.Songz.Fullstack_backend.Tables.Music;
-import com.Songz.Fullstack_backend.Tables.MusicInfo;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.Songz.Fullstack_backend.Services.AddMusic;
+import com.Songz.Fullstack_backend.Services.ReturnAllAlbums;
+import com.Songz.Fullstack_backend.Services.ReturnAllArtist;
+import com.Songz.Fullstack_backend.Services.ReturnAllSongs;
+import com.Songz.Fullstack_backend.Services.ReturnByAlbum;
+import com.Songz.Fullstack_backend.Tables.Album;
+import com.Songz.Fullstack_backend.Tables.ArtistTable;
+import com.Songz.Fullstack_backend.Tables.Music;
+import com.Songz.Fullstack_backend.Tables.MusicInfo;
 
 @Controller
 @RestController
@@ -35,7 +46,7 @@ public class SongController {
         return returnAllAlbums.exe(null);
     }
     @GetMapping("/artist")
-    public ResponseEntity<List<Artist>> getAllArtists() {
+    public ResponseEntity<List<ArtistTable>> getAllArtists() {
         return returnAllArtist.exe(null);
     }
     @GetMapping("/Song")

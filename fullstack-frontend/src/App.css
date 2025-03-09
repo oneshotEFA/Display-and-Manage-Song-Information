@@ -1,5 +1,6 @@
 body {
     overflow: hidden;
+    margin: 0;
 }
 .App {
     padding-top: 70px; /* Prevents content from getting hidden */
@@ -8,6 +9,7 @@ body {
     background-image: url("./assets/overlay.png");
     background-color: rgb(1,17, 24, 0.9);
     overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 
@@ -88,4 +90,20 @@ ul {
 li img {
     height: 50px;
     width: 150px;
+}
+@media (max-width: 768px){
+    .App{
+        padding-left: 0px;
+        
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
