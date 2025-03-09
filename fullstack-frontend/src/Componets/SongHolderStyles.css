@@ -9,7 +9,7 @@
     right: 0;
     bottom: 30px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     overflow-y: scroll;
     padding: 1rem;
     scrollbar-width: none;
@@ -18,8 +18,15 @@
     rgb(0, 255, 255, 0.1) 10px 10px;
 }
 
+
+
+
 .Container::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
+}
+.header{
+    position: relative;
+    top:30px;
 }
 
 .row{

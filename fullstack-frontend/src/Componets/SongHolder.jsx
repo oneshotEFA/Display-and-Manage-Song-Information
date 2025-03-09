@@ -1,8 +1,10 @@
 import "./SongHolderStyles.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import { SearchContext } from "./SearchProvider";
 
 // eslint-disable-next-line react/prop-types
-function SongHolder({ albumTitle }) {
+function SongHolder({ albumTitle,artistName }) {
+    const {searchMusic} = useContext(SearchContext);
     var Url = `http://localhost:8080/music/`;
     const [songHolder, setSongHolder] = useState([]);
     var nosong = null;
@@ -10,7 +12,14 @@ function SongHolder({ albumTitle }) {
         try {
             if (albumTitle) {
                 Url = `http://localhost:8080/music/find?albumName=${encodeURIComponent(albumTitle)}`;
-            } else {
+            }
+            else if(artistName){
+                Url = `http://localhost:8080/music/findbyartist?artisname=${encodeURIComponent(artistName)}`;
+            } 
+            else if(searchMusic){
+                Url =`http://localhost:8080/music/Search?MusicTitle=${encodeURIComponent(searchMusic)}`;
+            }
+            else {
                 Url = `http://localhost:8080/music/Song`;
             }
 
@@ -28,7 +37,8 @@ function SongHolder({ albumTitle }) {
 
     useEffect(() => {
         FetchSong();
-    }, [albumTitle]);
+    }, [albumTitle, artistName,searchMusic]);
+    
 
     return (
         <>

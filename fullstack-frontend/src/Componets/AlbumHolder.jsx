@@ -23,7 +23,7 @@ function AlbumHolder() {
         fetchAlbum();
     }, []);
 
-    // Reset `id` when navigating to /AlbumHolder
+  
     useEffect(() => {
         if (location.pathname === "/AlbumHolder") {
             setId(null);

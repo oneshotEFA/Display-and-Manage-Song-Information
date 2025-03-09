@@ -54,9 +54,10 @@
 @media (max-width: 768px){
     .main{
         left: 0;
+        justify-content: center;
     }
     .bodyies{
-        width: 100px;
+        width: 110px;
     }
     .bodyies h3{
         font-size: 12px;

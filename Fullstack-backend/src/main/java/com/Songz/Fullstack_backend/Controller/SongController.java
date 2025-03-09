@@ -17,6 +17,8 @@ import com.Songz.Fullstack_backend.Services.ReturnAllAlbums;
 import com.Songz.Fullstack_backend.Services.ReturnAllArtist;
 import com.Songz.Fullstack_backend.Services.ReturnAllSongs;
 import com.Songz.Fullstack_backend.Services.ReturnByAlbum;
+import com.Songz.Fullstack_backend.Services.ReturnByArtist;
+import com.Songz.Fullstack_backend.Services.SearchMusic;
 import com.Songz.Fullstack_backend.Tables.Album;
 import com.Songz.Fullstack_backend.Tables.ArtistTable;
 import com.Songz.Fullstack_backend.Tables.Music;
@@ -33,12 +35,17 @@ public class SongController {
     private final ReturnAllSongs returnAllSongs;
     private final ReturnByAlbum  returnByAlbum;
     private final AddMusic addMusic;
-    public SongController(ReturnAllAlbums returnAllAlbums, ReturnAllArtist returnAllArtist, ReturnAllSongs returnAllSongs, ReturnByAlbum returnByAlbum, AddMusic addMusic) {
+    private final ReturnByArtist returnByArtist;
+    private final SearchMusic searchMusic;
+
+    public SongController(AddMusic addMusic, ReturnAllAlbums returnAllAlbums, ReturnAllArtist returnAllArtist, ReturnAllSongs returnAllSongs, ReturnByAlbum returnByAlbum, ReturnByArtist returnByArtist, SearchMusic searchMusic) {
+        this.addMusic = addMusic;
         this.returnAllAlbums = returnAllAlbums;
         this.returnAllArtist = returnAllArtist;
         this.returnAllSongs = returnAllSongs;
         this.returnByAlbum = returnByAlbum;
-        this.addMusic = addMusic;
+        this.returnByArtist = returnByArtist;
+        this.searchMusic = searchMusic;
     }
 
     @GetMapping("/album")
@@ -61,5 +68,15 @@ public class SongController {
     public ResponseEntity<String> addMusic(@RequestBody MusicInfo music) {
         return addMusic.exe(music);
     }
+    @GetMapping("/findbyartist")
+    public ResponseEntity<List<Music>> getbyartistname(@RequestParam String artisname) {
+        return returnByArtist.exe(artisname);
+    }
+    @GetMapping("/Search")
+    public ResponseEntity<List<Music>> SeachByTitle(@RequestParam String MusicTitle) {
+        return searchMusic.exe(MusicTitle);
+    }
+    
+    
 
 }

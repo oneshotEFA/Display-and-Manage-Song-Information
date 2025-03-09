@@ -20,28 +20,16 @@ function App() {
 }
 
 
-function home(){
 
-    return (
-        <Router>
-            <Routes>
-                <Route path="/Home" element={<Home />} />
-            </Routes>
-        </Router>
-        
-    )
-}
 function MainApp() {
     const navigate = useNavigate();
-    const [home,sethome] =useState(false);
+    const [home,sethome] =useState(true);
     const location = useLocation();
    useEffect(() => {
            if (location.pathname === "/Home") {
                sethome(true);
            }
-           else{
-            sethome(false);
-           }
+           
        }, [location.pathname]);
 
     const navCtrl = (path) => {
@@ -65,7 +53,7 @@ function MainApp() {
                         <Route path="/SongHolder" element={<SongHolder />} />
                         <Route path="/AlbumHolder" element={<AlbumHolder key={Date.now()} />} />
                         <Route path="/AddMusic" element={<AddMusic />} />
-                        <Route path="/ArtisHolder" element={<ArtisHolder />} />
+                        <Route path="/ArtisHolder" element={<ArtisHolder key={Date.now()} />} />
                     </Routes>
                 </div>
             </div>

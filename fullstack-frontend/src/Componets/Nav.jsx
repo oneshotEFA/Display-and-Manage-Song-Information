@@ -1,14 +1,26 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import img3 from "../assets/img-3.png";
 import "./NavStyles.css";
+import SongHolder from "./SongHolder";
+import { SearchContext } from "./SearchProvider";
+
 
 function NavB({ nav }) {
     const [toggle, setToggle] = useState(false);
-
+    const [search,setsearch] = useState('');
+    // const [value, setvalue] = useState('');
+    const {setSearchMusic} = useContext(SearchContext)
+    
     const openCloseToggle = () => {
         setToggle((prev) => !prev);
     };
+    const handelchange = (e)=>{
+        setsearch(e.target.value);
+    }
+    const searchMusic = ()=>{
+        setSearchMusic(search);
+    }
 
     return (
         <>
@@ -22,8 +34,15 @@ function NavB({ nav }) {
                     </Link>
                 </div>
                 <div className="links">
-                    <input placeholder="      artist name" />
-                    <button>Search</button>
+                    <input 
+                    type="text"
+                    placeholder="   Music Name" 
+                    value={search}
+                    onChange={handelchange}
+                    />
+                    <button onClick={searchMusic} >Search</button>
+
+
                     <div className="link-nav">
                         <Link to="/Home">Home</Link>
                         <a href="#">Features</a>
@@ -32,7 +51,8 @@ function NavB({ nav }) {
                     </div>
                 </div>
             </nav>
-
+         
+           
             <div className="side-bar-mobile" style={{ width: toggle ? "200px" : "0px" }}>
                 <div className="side-boxes-mobile" onClick={() =>{ nav("/AddMusic");openCloseToggle();}}>
                     <h2>Add Music</h2>
